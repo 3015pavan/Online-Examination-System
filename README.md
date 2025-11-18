@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Online Examination System - MERN Stack
 
 A complete full-stack online examination platform built with MongoDB, Express.js, React.js, and Node.js. This system supports both Admin and Student roles with comprehensive exam management, real-time scoring, and detailed analytics.
@@ -514,3 +515,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 **Created with ❤️ using MERN Stack**
 
 Last Updated: 2025-01-17
+=======
+# Online-Examination-System
+The Online Examination System is a web-based platform that enables educational institutes and organizations to conduct exams online securely and efficiently. It provides separate dashboards for students and administrators, allowing smooth management of exams, questions, and results.
+>>>>>>> 8406d39c6788be48576d6277b3deb869f2fad48b
