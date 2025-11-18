@@ -1,0 +1,371 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Online Examination System",
+  "dateExported": "2025-01-17T10:00:00.000Z",
+  "version": "1.1",
+  "folders": [
+    {
+      "folderName": "Authentication",
+      "requests": [
+        {
+          "name": "Register Student",
+          "method": "POST",
+          "url": "{{baseUrl}}/auth/register",
+          "body": {
+            "name": "John Doe",
+            "email": "john@example.com",
+            "password": "password123",
+            "registrationNumber": "REG2024001",
+            "department": "Computer Science",
+            "semester": 4
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Login",
+          "method": "POST",
+          "url": "{{baseUrl}}/auth/login",
+          "body": {
+            "email": "admin@example.com",
+            "password": "admin123"
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Get Current User",
+          "method": "GET",
+          "url": "{{baseUrl}}/auth/me",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "method": "POST",
+          "url": "{{baseUrl}}/auth/refresh-token",
+          "body": {
+            "refreshToken": "{{refreshToken}}"
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        }
+      ]
+    },
+    {
+      "folderName": "Student Management",
+      "requests": [
+        {
+          "name": "Get All Students",
+          "method": "GET",
+          "url": "{{baseUrl}}/students",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Get Student by ID",
+          "method": "GET",
+          "url": "{{baseUrl}}/students/:id",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Create Student",
+          "method": "POST",
+          "url": "{{baseUrl}}/students",
+          "body": {
+            "name": "Jane Smith",
+            "email": "jane@example.com",
+            "password": "password123",
+            "registrationNumber": "REG2024002",
+            "department": "Information Technology",
+            "semester": 3
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Update Student",
+          "method": "PUT",
+          "url": "{{baseUrl}}/students/:id",
+          "body": {
+            "name": "Jane Smith Updated",
+            "department": "Computer Science",
+            "semester": 4
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Delete Student",
+          "method": "DELETE",
+          "url": "{{baseUrl}}/students/:id",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        }
+      ]
+    },
+    {
+      "folderName": "Exam Management",
+      "requests": [
+        {
+          "name": "Get All Exams",
+          "method": "GET",
+          "url": "{{baseUrl}}/exams",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Get Exam by ID",
+          "method": "GET",
+          "url": "{{baseUrl}}/exams/:id",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Get Assigned Exams",
+          "method": "GET",
+          "url": "{{baseUrl}}/exams/assigned",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Create Exam",
+          "method": "POST",
+          "url": "{{baseUrl}}/exams",
+          "body": {
+            "title": "JavaScript Fundamentals",
+            "description": "Test your JavaScript knowledge",
+            "duration": 60,
+            "totalMarks": 100,
+            "perQuestionMarks": 1,
+            "negativeMarking": 0.25,
+            "totalQuestions": 100,
+            "examDate": "2025-02-15T00:00:00Z",
+            "startTime": "09:00",
+            "endTime": "10:00",
+            "passingMarks": 40
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Update Exam",
+          "method": "PUT",
+          "url": "{{baseUrl}}/exams/:id",
+          "body": {
+            "title": "Advanced JavaScript",
+            "duration": 90
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Delete Exam",
+          "method": "DELETE",
+          "url": "{{baseUrl}}/exams/:id",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Assign Exam to Students",
+          "method": "POST",
+          "url": "{{baseUrl}}/exams/:id/assign-students",
+          "body": {
+            "studentIds": ["student_id_1", "student_id_2"]
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Get Exam Statistics",
+          "method": "GET",
+          "url": "{{baseUrl}}/exams/:id/statistics",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        }
+      ]
+    },
+    {
+      "folderName": "Question Management",
+      "requests": [
+        {
+          "name": "Get Questions by Exam",
+          "method": "GET",
+          "url": "{{baseUrl}}/questions/exam/:examId",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Create Question",
+          "method": "POST",
+          "url": "{{baseUrl}}/questions",
+          "body": {
+            "examId": "exam_id",
+            "questionText": "What does var stand for in JavaScript?",
+            "options": [
+              {
+                "optionLetter": "A",
+                "optionText": "variable"
+              },
+              {
+                "optionLetter": "B",
+                "optionText": "variation"
+              },
+              {
+                "optionLetter": "C",
+                "optionText": "variance"
+              },
+              {
+                "optionLetter": "D",
+                "optionText": "vertical"
+              }
+            ],
+            "correctAnswer": "A",
+            "explanation": "var is used to declare variables in JavaScript"
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Update Question",
+          "method": "PUT",
+          "url": "{{baseUrl}}/questions/:id",
+          "body": {
+            "questionText": "What is the purpose of var keyword?",
+            "correctAnswer": "A"
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Delete Question",
+          "method": "DELETE",
+          "url": "{{baseUrl}}/questions/:id",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        }
+      ]
+    },
+    {
+      "folderName": "Results",
+      "requests": [
+        {
+          "name": "Start Exam",
+          "method": "POST",
+          "url": "{{baseUrl}}/results/:examId/start",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Save Answer",
+          "method": "POST",
+          "url": "{{baseUrl}}/results/:examId/save-answer",
+          "body": {
+            "questionId": "question_id",
+            "selectedAnswer": "A"
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Submit Exam",
+          "method": "POST",
+          "url": "{{baseUrl}}/results/:examId/submit",
+          "body": {
+            "totalTimeSpent": 3600
+          },
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "name": "Get Exam Result",
+          "method": "GET",
+          "url": "{{baseUrl}}/results/:examId/result",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Get Student Results",
+          "method": "GET",
+          "url": "{{baseUrl}}/results/my-results",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Get All Results for Exam",
+          "method": "GET",
+          "url": "{{baseUrl}}/results/exam/:examId/all-results",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Export Results to CSV",
+          "method": "GET",
+          "url": "{{baseUrl}}/results/exam/:examId/export-csv",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        },
+        {
+          "name": "Get Dashboard Statistics",
+          "method": "GET",
+          "url": "{{baseUrl}}/results/dashboard/statistics",
+          "headers": {
+            "Authorization": "Bearer {{accessToken}}"
+          }
+        }
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "name": "baseUrl",
+      "value": "http://localhost:5000/api"
+    },
+    {
+      "name": "accessToken",
+      "value": ""
+    },
+    {
+      "name": "refreshToken",
+      "value": ""
+    }
+  ]
+}
