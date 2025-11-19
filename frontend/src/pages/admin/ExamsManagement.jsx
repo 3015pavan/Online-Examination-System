@@ -173,7 +173,7 @@ const ExamsManagement = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900">
       <Navbar
         title="Exams Management"
         user={user}
@@ -191,7 +191,7 @@ const ExamsManagement = () => {
 
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Exams</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Exams</h1>
           <button
             onClick={() => {
               setShowForm(!showForm);
@@ -210,7 +210,7 @@ const ExamsManagement = () => {
                 passingMarks: '',
               });
             }}
-            className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="flex items-center gap-2 bg-blue-600 dark:bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
           >
             <FiPlus /> {showForm ? 'Cancel' : 'Add Exam'}
           </button>
@@ -218,8 +218,8 @@ const ExamsManagement = () => {
 
         {/* Form */}
         {showForm && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-md p-6 mb-8">
+            <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
               {editingId ? 'Edit Exam' : 'Add New Exam'}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -231,7 +231,7 @@ const ExamsManagement = () => {
                   value={formData.title}
                   onChange={handleInputChange}
                   required
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
                 <input
                   type="text"
@@ -335,12 +335,12 @@ const ExamsManagement = () => {
                 {/* Assignment Modal */}
                 {showAssignModal && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
-                      <h2 className="text-xl font-bold mb-4 text-gray-900">Assign Exam to Students</h2>
+                    <div className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-xl p-6 max-w-md w-full">
+                      <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Assign Exam to Students</h2>
 
-                      <div className="border border-gray-300 rounded-lg p-4 max-h-48 overflow-y-auto mb-4">
+                      <div className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 max-h-48 overflow-y-auto mb-4">
                         {students.length === 0 ? (
-                          <p className="text-gray-500">No students available</p>
+                          <p className="text-gray-500 dark:text-gray-300">No students available</p>
                         ) : (
                           students.map((student) => (
                             <label
@@ -361,7 +361,7 @@ const ExamsManagement = () => {
                                 }}
                                 className="w-4 h-4"
                               />
-                              <span className="text-gray-700">
+                              <span className="text-gray-700 dark:text-gray-300">
                                 {student.name} ({student.email})
                               </span>
                             </label>
@@ -372,7 +372,7 @@ const ExamsManagement = () => {
                       <div className="flex gap-3">
                         <button
                           onClick={() => setShowAssignModal(false)}
-                          className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+                          className="flex-1 bg-gray-300 text-gray-700 dark:bg-gray-700 dark:text-gray-200 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition"
                         >
                           Cancel
                         </button>
@@ -393,10 +393,10 @@ const ExamsManagement = () => {
             {exams.map((exam) => (
               <div
                 key={exam._id}
-                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition"
+                className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-md p-6 hover:shadow-lg transition"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
                     <FiBookmark /> {exam.title}
                   </h3>
                   <div className="flex gap-2">
@@ -419,19 +419,19 @@ const ExamsManagement = () => {
 
                 <div className="grid grid-cols-2 gap-4 text-sm mb-4">
                   <div>
-                    <p className="text-gray-600">Duration</p>
+                    <p className="text-gray-600 dark:text-gray-300">Duration</p>
                     <p className="font-semibold">{exam.duration} min</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Total Marks</p>
+                    <p className="text-gray-600 dark:text-gray-300">Total Marks</p>
                     <p className="font-semibold">{exam.totalMarks}</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Questions</p>
+                    <p className="text-gray-600 dark:text-gray-300">Questions</p>
                     <p className="font-semibold">{exam.totalQuestions}</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Per Q Marks</p>
+                    <p className="text-gray-600 dark:text-gray-300">Per Q Marks</p>
                     <p className="font-semibold">{exam.perQuestionMarks}</p>
                   </div>
                 </div>

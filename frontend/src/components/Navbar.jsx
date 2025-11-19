@@ -1,6 +1,16 @@
+import { FiSun, FiMoon } from 'react-icons/fi';
+import useThemeStore from '../context/themeStore';
+
 const Navbar = ({ title, user, onLogout }) => {
+  const theme = useThemeStore((s) => s.theme);
+  const setTheme = useThemeStore((s) => s.setTheme);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white dark:bg-gray-800 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
@@ -12,6 +22,14 @@ const Navbar = ({ title, user, onLogout }) => {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">
                 {user?.role?.toUpperCase()}
               </span>
+              <button
+                onClick={toggleTheme}
+                title="Toggle theme"
+                className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                {theme === 'dark' ? <FiSun /> : <FiMoon />}
+              </button>
+
               <button
                 onClick={onLogout}
                 className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"

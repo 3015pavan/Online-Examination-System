@@ -64,7 +64,7 @@ const StudentDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900">
       <Navbar title="Student Dashboard" user={user} onLogout={handleLogout} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -91,10 +91,10 @@ const StudentDashboard = () => {
         </div>
 
         {/* Available Exams */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Available Exams</h2>
+        <div className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Available Exams</h2>
           {exams.length === 0 ? (
-            <p className="text-gray-600 text-center py-8">
+            <p className="text-gray-600 dark:text-gray-300 text-center py-8">
               No exams assigned to you yet
             </p>
           ) : (
@@ -107,12 +107,12 @@ const StudentDashboard = () => {
                 return (
                   <div
                     key={exam._id}
-                    className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition"
+                    className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition bg-white dark:bg-gray-800"
                   >
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                       {exam.title}
                     </h3>
-                    <p className="text-gray-600 mb-4">{exam.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">{exam.description}</p>
 
                     <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                       <div>
@@ -142,7 +142,7 @@ const StudentDashboard = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleStartExam(exam._id)}
-                        className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                        className="flex-1 bg-blue-600 dark:bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
                       >
                         {attemptedResult ? 'Resume' : 'Start'} Exam
                       </button>

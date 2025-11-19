@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900">
       <Navbar
         title="Admin Dashboard"
         user={user}
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
                 onClick={() => {
                   if (item.path !== '#') navigate(item.path);
                 }}
-                className="flex items-center gap-2 px-6 py-2 bg-white rounded-lg shadow hover:shadow-md transition"
+                className="flex items-center gap-2 px-6 py-2 bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow hover:shadow-md transition"
               >
                 <IconComponent size={20} />
                 {item.label}
@@ -112,20 +112,20 @@ const AdminDashboard = () => {
         </div>
 
         {/* Highest Score */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-bold mb-4 text-gray-900">
+        <div className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-md p-6">
+          <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
             System Overview
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 bg-blue-50 rounded-lg border border-blue-200">
-              <p className="text-gray-600 mb-2">Highest Score</p>
-              <p className="text-3xl font-bold text-blue-600">
+            <div className="p-6 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="text-gray-600 dark:text-gray-300 mb-2">Highest Score</p>
+              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">
                 {stats?.highestScore || 0}
               </p>
             </div>
-            <div className="p-6 bg-green-50 rounded-lg border border-green-200">
-              <p className="text-gray-600 mb-2">Average Percentage</p>
-              <p className="text-3xl font-bold text-green-600">
+            <div className="p-6 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800">
+              <p className="text-gray-600 dark:text-gray-300 mb-2">Average Percentage</p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400">
                 {stats?.averageScore}%
               </p>
             </div>

@@ -118,13 +118,13 @@ const ExamPage = () => {
   const questionsToGo = questions.length - answeredCount;
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900">
       {/* Header */}
-      <div className="bg-white shadow-md sticky top-0 z-10">
+      <div className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{exam.title}</h1>
-            <p className="text-sm text-gray-600">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{exam.title}</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               Question {currentQuestionIndex + 1} of {questions.length}
             </p>
           </div>
@@ -140,12 +140,12 @@ const ExamPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Question Panel */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-lg shadow-md p-8">
+            <div className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-md p-8">
               {currentQuestion && (
                 <>
                   {/* Question Text */}
                   <div className="mb-8">
-                    <h2 className="text-xl font-bold text-gray-900 mb-4">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                       Q{currentQuestionIndex + 1}. {currentQuestion.questionText}
                     </h2>
                   </div>
@@ -155,11 +155,11 @@ const ExamPage = () => {
                     {currentQuestion.options?.map((option, idx) => (
                       <label
                         key={option._id || idx}
-                        className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition ${
-                          answers[currentQuestion._id] === option.optionLetter
-                            ? 'border-blue-600 bg-blue-50'
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                          className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition ${
+                            answers[currentQuestion._id] === option.optionLetter
+                              ? 'border-blue-600 bg-blue-50 dark:bg-blue-900/40'
+                              : 'border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600'
+                          }`}
                       >
                         <input
                           type="radio"
@@ -186,7 +186,7 @@ const ExamPage = () => {
                     <button
                       onClick={handlePrevious}
                       disabled={currentQuestionIndex === 0}
-                      className="flex items-center gap-2 px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 px-6 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <FiChevronLeft /> Previous
                     </button>
@@ -194,7 +194,7 @@ const ExamPage = () => {
                     <button
                       onClick={handleNext}
                       disabled={currentQuestionIndex === questions.length - 1}
-                      className="flex items-center gap-2 px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 px-6 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Next <FiChevronRight />
                     </button>
@@ -214,11 +214,11 @@ const ExamPage = () => {
 
           {/* Question Navigator */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
-              <h3 className="font-bold mb-4 text-gray-900">Questions</h3>
+            <div className="bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow-md p-6 sticky top-24">
+              <h3 className="font-bold mb-4 text-gray-900 dark:text-gray-100">Questions</h3>
 
-              <div className="mb-4 p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-gray-600">
+              <div className="mb-4 p-4 bg-blue-50 dark:bg-blue-900/40 rounded-lg">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   Answered: {answeredCount}/{questions.length}
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
@@ -241,7 +241,7 @@ const ExamPage = () => {
                         ? 'bg-blue-600 text-white'
                         : answers[q._id]
                         ? 'bg-green-600 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                        : 'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
                     }`}
                   >
                     {idx + 1}

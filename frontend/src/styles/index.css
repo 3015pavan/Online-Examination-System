@@ -20,6 +20,46 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Global background and text colors that respond to Tailwind's `dark` class on <html> */
+html, body, #root {
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #111827; /* gray-900 */
+}
+
+.dark body, .dark #root {
+  background-color: #0f172a; /* slate-900 */
+  color: #f3f4f6; /* gray-100 */
+}
+
+/* Dark-mode overrides for common Tailwind utility classes so components without explicit dark: variants still adapt */
+.dark .bg-white { background-color: #0b1220 !important; }
+.dark .bg-gray-100 { background-color: #0b1220 !important; }
+.dark .bg-gray-50 { background-color: #081024 !important; }
+.dark .bg-blue-50 { background-color: rgba(15, 23, 42, 0.6) !important; }
+.dark .bg-blue-100 { background-color: rgba(15, 23, 42, 0.6) !important; }
+.dark .bg-green-50 { background-color: rgba(15, 23, 42, 0.6) !important; }
+.dark .bg-red-50 { background-color: rgba(15, 23, 42, 0.6) !important; }
+.dark .rounded-lg { /* keep corners consistent */ }
+
+.dark .text-gray-900, .dark .text-gray-800 { color: #f3f4f6 !important; }
+.dark .text-gray-700, .dark .text-gray-600 { color: #cbd5e1 !important; }
+.dark .text-gray-500, .dark .text-gray-400 { color: #94a3b8 !important; }
+
+/* Borders */
+.dark .border-gray-200 { border-color: rgba(255,255,255,0.06) !important; }
+.dark .border { border-color: rgba(255,255,255,0.04) !important; }
+
+/* Modal/backdrop tweaks */
+.dark .bg-black.bg-opacity-50 { background-color: rgba(0,0,0,0.6) !important; }
+
+/* Buttons with colored backgrounds: keep color but slightly brighten text in dark */
+.dark .text-white { color: #fff !important; }
+
+/* Utility to ensure cards/shadows are subtler in dark mode */
+.dark .shadow-md { box-shadow: 0 1px 3px rgba(2,6,23,0.6) !important; }
+.dark .shadow-xl { box-shadow: 0 10px 15px rgba(2,6,23,0.6) !important; }
+
 ::-webkit-scrollbar {
   width: 8px;
 }
