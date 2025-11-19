@@ -60,6 +60,20 @@ html, body, #root {
 .dark .shadow-md { box-shadow: 0 1px 3px rgba(2,6,23,0.6) !important; }
 .dark .shadow-xl { box-shadow: 0 10px 15px rgba(2,6,23,0.6) !important; }
 
+/* Ensure form inputs are visible in dark mode */
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="number"],
+.dark input[type="date"],
+.dark input[type="time"],
+.dark textarea,
+.dark select {
+  background-color: #374151 !important; /* gray-700 */
+  color: #f3f4f6 !important; /* gray-100 */
+  border-color: #4b5563 !important; /* gray-700 border */
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
