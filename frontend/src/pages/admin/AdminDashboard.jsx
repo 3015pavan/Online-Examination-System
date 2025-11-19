@@ -44,7 +44,7 @@ const AdminDashboard = () => {
     { label: 'Students', icon: FiUsers, path: '/admin/students' },
     { label: 'Exams', icon: FiBookOpen, path: '/admin/exams' },
     { label: 'Results', icon: FiBarChart2, path: '/admin/results' },
-    { label: 'Settings', icon: FiSettings, path: '#' },
+    { label: 'Settings', icon: FiSettings, path: '/admin/settings' },
   ];
 
   if (loading) {

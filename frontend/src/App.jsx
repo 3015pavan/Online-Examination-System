@@ -21,6 +21,7 @@ import StudentsManagement from './pages/admin/StudentsManagement';
 import ExamsManagement from './pages/admin/ExamsManagement';
 import QuestionsManagement from './pages/admin/QuestionsManagement';
 import ResultsManagement from './pages/admin/ResultsManagement';
+import Settings from './pages/admin/Settings';
 
 function App() {
   return (
@@ -103,6 +104,14 @@ function App() {
           element={
             <AdminRoute>
               <ResultsManagement />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/settings"
+          element={
+            <AdminRoute>
+              <Settings />
             </AdminRoute>
           }
         />
