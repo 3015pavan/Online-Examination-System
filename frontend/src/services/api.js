@@ -32,6 +32,16 @@ export const examService = {
     axiosInstance.post(`/exams/${examId}/remove-students`, { studentIds }),
   getExamStatistics: (examId) =>
     axiosInstance.get(`/exams/${examId}/statistics`),
+  scheduleExam: (examId, data) =>
+    axiosInstance.post(`/exams/${examId}/schedule`, data),
+  generateExamCode: (examId) =>
+    axiosInstance.post(`/exams/${examId}/generate-code`),
+  startExam: (examId) =>
+    axiosInstance.post(`/exams/${examId}/start`),
+  endExam: (examId) =>
+    axiosInstance.post(`/exams/${examId}/end`),
+  validateExamAccess: (examCode) =>
+    axiosInstance.post('/exams/validate-access', { examCode }),
 };
 
 export const questionService = {

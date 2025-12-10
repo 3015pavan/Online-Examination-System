@@ -7,7 +7,8 @@ import { FiMail, FiLock } from 'react-icons/fi';
 const Login = () => {
   const navigate = useNavigate();
   const { login, loading } = useAuthStore();
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: '', password: '', examinerId: '' });
+  const [isStudent, setIsStudent] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await login(formData.email, formData.password);
+      const response = await login(formData.email, formData.password, formData.examinerId);
       toast.success('Login successful');
       
       if (response.data.user.role === 'admin') {
@@ -80,6 +81,33 @@ const Login = () => {
                 placeholder="••••••••"
               />
             </label>
+
+            <label className="block">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-700 dark:text-gray-300">I am a Student</span>
+                <input
+                  type="checkbox"
+                  checked={isStudent}
+                  onChange={(e) => setIsStudent(e.target.checked)}
+                  className="form-checkbox h-4 w-4 text-blue-600"
+                />
+              </div>
+            </label>
+
+            {isStudent && (
+              <label className="block">
+                <span className="text-sm text-gray-700 dark:text-gray-300">Examiner ID</span>
+                <input
+                  type="text"
+                  name="examinerId"
+                  value={formData.examinerId}
+                  onChange={handleChange}
+                  required={isStudent}
+                  className="mt-2 block w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your examiner's ID"
+                />
+              </label>
+            )}
 
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">

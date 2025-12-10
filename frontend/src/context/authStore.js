@@ -20,10 +20,12 @@ const useAuthStore = create((set) => ({
     set({ accessToken: null, refreshToken: null, user: null });
   },
 
-  login: async (email, password) => {
+  login: async (email, password, examinerId) => {
     set({ loading: true, error: null });
     try {
-      const { data } = await authService.login({ email, password });
+      const loginData = { email, password };
+      if (examinerId) loginData.examinerId = examinerId;
+      const { data } = await authService.login(loginData);
       set({
         user: data.data.user,
         accessToken: data.data.accessToken,

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Navbar from '../components/Navbar';
 import StatCard from '../components/StatCard';
+import ExamCodeEntry from '../components/ExamCodeEntry';
 import useAuthStore from '../context/authStore';
 import { examService, resultService } from '../services/api';
 import { FiBookOpen, FiCheckCircle, FiAward } from 'react-icons/fi';
@@ -88,6 +89,12 @@ const StudentDashboard = () => {
             icon={<FiAward size={24} />}
             color="purple"
           />
+        </div>
+
+        {/* Join Exam by Code */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Join Exam</h2>
+          <ExamCodeEntry />
         </div>
 
         {/* Available Exams */}

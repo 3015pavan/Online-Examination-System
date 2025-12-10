@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Navbar from '../../components/Navbar';
+import ExamScheduler from '../../components/ExamScheduler';
 import useAuthStore from '../../context/authStore';
 import { examService, studentService } from '../../services/api';
-import { FiEdit2, FiTrash2, FiPlus, FiChevronLeft, FiBookmark } from 'react-icons/fi';
+import { FiEdit2, FiTrash2, FiPlus, FiChevronLeft, FiBookmark, FiCalendar } from 'react-icons/fi';
 
 const ExamsManagement = () => {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ const ExamsManagement = () => {
     const [showAssignModal, setShowAssignModal] = useState(false);
     const [assigningExamId, setAssigningExamId] = useState(null);
     const [assignmentStudents, setAssignmentStudents] = useState([]);
+  const [showScheduler, setShowScheduler] = useState(false);
+  const [schedulingExam, setSchedulingExam] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -386,6 +389,35 @@ const ExamsManagement = () => {
                     </div>
                   </div>
                 )}
+
+        {/* Exam Scheduler Modal */}
+        {showScheduler && schedulingExam && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-3xl w-full my-8">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Schedule & Manage Exam</h2>
+                <button
+                  onClick={() => {
+                    setShowScheduler(false);
+                    setSchedulingExam(null);
+                    fetchExams();
+                  }}
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              <ExamScheduler 
+                exam={schedulingExam} 
+                onUpdate={(updatedExam) => {
+                  setSchedulingExam(updatedExam);
+                  fetchExams();
+                }}
+              />
+            </div>
+          </div>
+        )}
+
         {exams.length === 0 ? (
           <p className="text-center text-gray-600 py-8">No exams found</p>
         ) : (
@@ -448,6 +480,16 @@ const ExamsManagement = () => {
                   className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm mt-2"
                 >
                   Assign Students
+                </button>
+
+                <button
+                  onClick={() => {
+                    setSchedulingExam(exam);
+                    setShowScheduler(true);
+                  }}
+                  className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition text-sm mt-2 flex items-center justify-center gap-2"
+                >
+                  <FiCalendar /> Schedule & Start Exam
                 </button>
               </div>
             ))}

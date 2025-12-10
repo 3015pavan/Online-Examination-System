@@ -86,6 +86,36 @@ const examSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    examCode: {
+      type: String,
+      unique: true,
+      sparse: true,
+      index: true,
+    },
+    examStatus: {
+      type: String,
+      enum: ['created', 'scheduled', 'active', 'completed', 'cancelled'],
+      default: 'created',
+    },
+    scheduledStartTime: {
+      type: Date,
+    },
+    scheduledEndTime: {
+      type: Date,
+    },
+    actualStartTime: {
+      type: Date,
+    },
+    actualEndTime: {
+      type: Date,
+    },
+    codeGeneratedAt: {
+      type: Date,
+    },
+    canStudentsJoin: {
+      type: Boolean,
+      default: false,
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

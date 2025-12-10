@@ -46,6 +46,14 @@ const userSchema = new mongoose.Schema(
       type: Number,
       sparse: true,
     },
+    examinerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      sparse: true,
+      required: function () {
+        return this.role === 'student';
+      },
+    },
     isActive: {
       type: Boolean,
       default: true,

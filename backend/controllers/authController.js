@@ -66,7 +66,7 @@ exports.register = asyncHandler(async (req, res) => {
 
 // Login
 exports.login = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, examinerId } = req.body;
 
   // Check if user exists
   const user = await User.findOne({ email }).select('+password');
@@ -85,6 +85,20 @@ exports.login = asyncHandler(async (req, res) => {
     return res.status(403).json({ success: false, message: 'User account is inactive' });
   }
 
+  // If student is logging in, verify and update examinerId
+  if (user.role === 'student' && examinerId) {
+    // Verify examiner exists and is an admin
+    const examiner = await User.findById(examinerId);
+    if (!examiner || examiner.role !== 'admin') {
+      return res.status(400).json({ success: false, message: 'Invalid examiner ID' });
+    }
+    // Update student's examinerId
+    user.examinerId = examinerId;
+    await user.save();
+  } else if (user.role === 'student' && !examinerId) {
+    return res.status(400).json({ success: false, message: 'Examiner ID is required for student login' });
+  }
+
   // Update last login
   await user.updateLastLogin();
 
@@ -101,6 +115,7 @@ exports.login = asyncHandler(async (req, res) => {
         email: user.email,
         role: user.role,
         registrationNumber: user.registrationNumber,
+        examinerId: user.examinerId,
       },
       accessToken,
       refreshToken,
